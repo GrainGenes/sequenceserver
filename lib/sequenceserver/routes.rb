@@ -79,6 +79,14 @@ module SequenceServer
       # updated if params[:query] is not specified.
       update_searchdata_from_job(searchdata) if params[:job_id]
 
+      # temporary graingenes
+      searchdata[:database][0]["group"] = "barley"
+      searchdata[:database][0]["subgroup"] = "barley_h"
+      searchdata[:database][1]["group"] = "barley"
+      searchdata[:database][1]["subgroup"] = "barley_h"
+      searchdata[:database][2]["group"] = "wheat"
+      searchdata[:database][2]["subgroup"] = "wheat_abd"
+
       searchdata.to_json
     end
 

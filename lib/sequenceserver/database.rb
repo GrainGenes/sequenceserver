@@ -19,8 +19,8 @@ module SequenceServer
   #
   # SequenceServer will always place BLAST database files alongside input FASTA,
   # and use `parse_seqids` option of `makeblastdb` to format databases.
-  Database = Struct.new(:name, :title, :type, :nsequences, :ncharacters,
-                        :updated_on) do
+  Database = Struct.new(:name, :title, :type, :nsequences, :ncharacters, 
+                        :updated_on, :group, :subgroup) do
 
     extend Forwardable
 
