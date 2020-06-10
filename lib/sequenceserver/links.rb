@@ -65,6 +65,50 @@ module SequenceServer
     #     query_coords = coordinates[0]
     #     hit_coords = coordinates[1]
 
+    def jbrowse
+      qstart = hsps.map(&:qstart).min
+      sstart = hsps.map(&:sstart).min
+      qend = hsps.map(&:qend).max
+      send = hsps.map(&:send).max
+      first_hit_start = hsps.map(&:sstart).at(0)
+      first_hit_end = hsps.map(&:send).at(0)
+      my_features = ERB::Util.url_encode(JSON.generate([{
+          :seq_id => accession,
+          :start => sstart,
+          :end => send,
+          :type => "match",
+          :subfeatures =>  hsps.map {
+            |hsp| {
+              :start => hsp.send < hsp.sstart ? hsp.send : hsp.sstart,
+              :end => hsp.send < hsp.sstart ? hsp.sstart : hsp.send,
+              :type => "match_part"
+            } 
+          }
+      }]))
+      my_track = ERB::Util.url_encode(JSON.generate([
+           {
+              :label => "BLAST",
+              :key => "BLAST hits",
+              :type => "JBrowse/View/Track/CanvasFeatures",
+              :store => "url",
+              :glyph => "JBrowse/View/FeatureGlyph/Segments"
+           }
+      ]))
+      url = "http://wheat.pw.usda.gov/jb?data=/ggds/whe-iwgsc2018" \
+                   "&loc=#{accession}:#{first_hit_start-500}..#{first_hit_start+500}" \
+                   "&addFeatures=#{my_features}" \
+                   "&addTracks=#{my_track}" \
+                   "&tracks=BLAST" \
+                   "&highlight=#{accession}:#{first_hit_start}..#{first_hit_end}"
+      {
+        :order => 2,
+        :title => 'JBrowse',
+        :url   => url,
+        :icon  => 'fa-external-link'
+      }
+    end
+
+
     def ncbi
       return nil unless id.match(NCBI_ID_PATTERN) or title.match(NCBI_ID_PATTERN)
       ncbi_id = Regexp.last_match[1]
