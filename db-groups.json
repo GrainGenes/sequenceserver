@@ -1,7 +1,7 @@
 {
 		"wheat-abd":{
 			"group":		"wheat",
-			"name":			"Wheat ABD Collections",
+			"name":			"Wheat ABD Collection",
 			"list":[
 				"IWGSCv1"
 			]
@@ -9,7 +9,7 @@
 
 		"barley-h":{
 			"group":		"barley",
-			"name":			"Barley H Collections",
+			"name":			"Barley H Collection",
 			"list":[
 				"MorexV1",
 				"MorexV2"
@@ -18,7 +18,7 @@
 		
 		"oat-1":{
 			"group":		"oat",
-			"name":			"Oat (Avena) Collections",
+			"name":			"Oat (Avena) Collection",
 			"list":[
 				"oat6K",
 				"dnOSt",
@@ -28,7 +28,7 @@
 		},
 		"rye-1":{
 			"group":		"rye",
-			"name":			"Rye R Collections",
+			"name":			"Rye Collection",
 			"list":[
 				"Scv2CHR",
 				"Scv2CTG",
@@ -40,7 +40,7 @@
 		
 		"probes":{
 			"group":		"any",
-			"name":			"Probe Collections",
+			"name":			"Probe Collection",
 			"list":[
 				"wheat90K",
 				"HvBES",
