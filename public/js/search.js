@@ -638,14 +638,14 @@ var Databases = React.createClass({
             });
     },
     /* graingenes */
-    databasesGroup: function (group) {
-        if (!group) {
+    databasesSubgroup: function (subgroup) {
+        if (!subgroup) {
             return this.props.databases.slice();
         }
 
         return _.select(this.props.databases,
             function (database) {
-                return database.group === group;
+                return database.subgroup === subgroup;
             });
     },
 
@@ -658,10 +658,10 @@ var Databases = React.createClass({
             _.iteratee('type'))).sort();
     },
 
-    /* graingenes */
-    groups: function () {
+    // graingenes
+    subgroups: function () {
         return _.uniq(_.map(this.props.databases,
-            _.iteratee('group'))).sort();
+            _.iteratee('subgroup'))).sort();
     },
 
     handleClick: function (database) {
@@ -680,13 +680,13 @@ var Databases = React.createClass({
         }
     },
     /* graingenes */
-    handleToggleGroup: function (toggleState, group) {
+    handleToggleSubgroup: function (toggleState, subgroup) {
         switch (toggleState) {
         case '[Select all]':
-            $(`.${group} .database input:not(:checked)`).click();
+            $(`.${subgroup} .database input:not(:checked)`).click();
             break;
         case '[Deselect all]':
-            $(`.${group} .database input:checked`).click();
+            $(`.${subgroup} .database input:checked`).click();
             break;
         }
     },
@@ -701,44 +701,46 @@ var Databases = React.createClass({
         */
         return (
             <div className="form-group databases-container">
-                { _.map(this.groups(), this.renderDatabases) }
+                { _.map(this.subgroups(), this.renderDatabases) }
             </div>
         );
     },
-    renderDatabases: function (group) {
+    // graingenes
+    renderDatabases: function (subgroup) {
         // Panel name and column width.
-        var panelTitle = group[0].toUpperCase() +
-            group.substring(1).toLowerCase() + ' collection';
-        var columnClass = (this.groups().length > 1) ?  'col-md-6' :
+        //var panelTitle = subgroup[0].toUpperCase() +
+        //    subgroup.substring(1).toLowerCase() + ' collection';
+        var panelTitle = this.databasesSubgroup(subgroup)[0].subgroupname;
+        var columnClass = (this.subgroups().length > 1) ?  'col-md-6' :
             'col-md-12';
 
         // Toggle button.
         var toggleState = '[Select all]';
         var toggleClass = 'btn-link';
-        var toggleShown = this.databasesGroup(group).length > 1 ;
-        var toggleDisabled = this.state.group && this.state.group !== group;
+        var toggleShown = this.databasesSubgroup(subgroup).length > 1 ;
+        var toggleDisabled = this.state.subgroup && this.state.subgroup !== subgroup;
         if (toggleShown && toggleDisabled) toggleClass += ' disabled';
         if (!toggleShown) toggleClass += ' hidden';
-        if (this.nselected() === this.databasesGroup(group).length) {
+        if (this.nselected() === this.databasesSubgroup(subgroup).length) {
             toggleState = '[Deselect all]';
         }
 
         // JSX.
         return (
-            <div className={columnClass} key={'DB_'+group}>
+            <div className={columnClass} key={'DB_'+subgroup}>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 style={{display: 'inline'}}>{panelTitle}</h4> &nbsp;&nbsp;
                         <button type="button" className={toggleClass} disabled={toggleDisabled}
-                            onClick={ function () { this.handleToggleGroup(toggleState, group); }.bind(this) }>
+                            onClick={ function () { this.handleToggleSubgroup(toggleState, subgroup); }.bind(this) }>
                             {toggleState}
                         </button>
                     </div>
-                    <ul className={'list-group databases ' + group}>
+                    <ul className={'list-group databases ' + subgroup}>
                         {
-                            _.map(this.databasesGroup(group), _.bind(function (database,index) {
+                            _.map(this.databasesSubgroup(subgroup), _.bind(function (database,index) {
                                 return (
-                                    <li className="list-group-item" key={'DB_'+group+index}>
+                                    <li className="list-group-item" key={'DB_'+subgroup+index}>
                                         { this.renderDatabase(database) }
                                     </li>
                                 );

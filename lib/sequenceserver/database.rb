@@ -4,6 +4,7 @@ require 'digest/md5'
 require 'forwardable'
 
 require 'sequenceserver/sequence'
+require 'json'
 
 # Define Database class.
 module SequenceServer
@@ -20,7 +21,7 @@ module SequenceServer
   # SequenceServer will always place BLAST database files alongside input FASTA,
   # and use `parse_seqids` option of `makeblastdb` to format databases.
   Database = Struct.new(:name, :title, :type, :nsequences, :ncharacters, 
-                        :updated_on, :group, :subgroup) do
+                        :updated_on, :group, :subgroup, :subgroupname) do
 
     extend Forwardable
 
@@ -206,7 +207,71 @@ module SequenceServer
           next if multipart_database_name?(name)
           self << Database.new(*line.split('	'))
         end
+        read_blastdb_groups
       end
+
+      # graingenes fn
+      # create cross reference object for dbgroups and attach
+      # the database reference to the list items.
+      def read_blastdb_groups
+        file = File.read('db-groups.json')
+        @dbgroups = JSON.parse(file)
+
+        # initialize group,subgroup
+        dbs = all
+        
+        dbs.each { |db|
+          db.group = "other"
+          db.subgroup = "other"
+          db.subgroupname = "Other"
+        }
+
+        puts "\ndatabase groups"
+  
+        @dbgroups.each { |subgroup,gdata|
+          gdata["list"].each { |item|
+            
+            dbname = get_nameof(item)
+
+            # merge db-groups.json data into database
+            dbs.each { |db|
+              #puts "..#{db.name} == #{dbname}"
+              if db.name.include? dbname
+                  puts "found: "+gdata['name']
+                  
+                  db.group = gdata['group']
+                  db.subgroup = subgroup
+                  db.subgroupname = gdata['name']
+              end
+            }
+          }
+        }
+        
+        #pp @dbgroups
+        
+        puts '--------------------------------'
+      end
+
+      # graingenes
+      # given "abcset|wheat", return the name, "abcset"
+      def get_nameof(str)
+        name = str;
+        if str.include? '|'
+          name = str.split('|')[0]
+        end
+        name
+      end
+      
+      # graingenes
+      # given "abcset|wheat", return the group, "wheat"
+      def get_groupof(str)
+        ret = "any"
+        if str.include? '|'
+          ret = str.split('|')[1]
+        end
+        ret
+      end
+      
       # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
       # Recursively scan `database_dir` for un-formatted FASTA and format them
