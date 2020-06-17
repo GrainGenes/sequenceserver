@@ -1,4 +1,25 @@
 require 'erb'
+require "pp"
+
+# check if the organism is in db-groups.json and if it is, return the associated graingenes dataset
+def getJbrowseDb (organism)
+  file = File.read('db-groups.json')
+  @dbgroups = JSON.parse(file)
+
+  @dbgroups.each { |subgroup,gdata|
+    gdata["list"].each { |item|
+      
+      dbname = item['blastdb']
+
+      if (organism==dbname) 
+        return item['jb']
+      end
+    }
+  }
+  nil
+end
+
+
 
 module SequenceServer
   # Module to contain methods for generating sequence retrieval links.
@@ -66,12 +87,22 @@ module SequenceServer
     #     hit_coords = coordinates[1]
 
     def jbrowse
+
       qstart = hsps.map(&:qstart).min
       sstart = hsps.map(&:sstart).min
       qend = hsps.map(&:qend).max
       send = hsps.map(&:send).max
       first_hit_start = hsps.map(&:sstart).at(0)
       first_hit_end = hsps.map(&:send).at(0)
+
+      organism = id.split('|')[1]
+      sequence_id = accession
+
+      ggdb = getJbrowseDb(organism)
+      if ggdb.nil? 
+        return nil
+      end
+
       my_features = ERB::Util.url_encode(JSON.generate([{
           :seq_id => accession,
           :start => sstart,
@@ -94,8 +125,9 @@ module SequenceServer
               :glyph => "JBrowse/View/FeatureGlyph/Segments"
            }
       ]))
-      url = "http://wheat.pw.usda.gov/jb?data=/ggds/whe-iwgsc2018" \
-                   "&loc=#{accession}:#{first_hit_start-500}..#{first_hit_start+500}" \
+      url = "http://wheat.pw.usda.gov/jb" \
+                   "?data=/ggds/#{ggdb}" \
+                   "&loc=#{sequence_id}:#{first_hit_start-500}..#{first_hit_start+500}" \
                    "&addFeatures=#{my_features}" \
                    "&addTracks=#{my_track}" \
                    "&tracks=BLAST" \
@@ -107,6 +139,7 @@ module SequenceServer
         :icon  => 'fa-external-link'
       }
     end
+
 
 
     def ncbi

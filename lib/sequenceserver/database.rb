@@ -5,6 +5,7 @@ require 'forwardable'
 
 require 'sequenceserver/sequence'
 require 'json'
+require 'pp'
 
 # Define Database class.
 module SequenceServer
@@ -231,7 +232,9 @@ module SequenceServer
         @dbgroups.each { |subgroup,gdata|
           gdata["list"].each { |item|
             
-            dbname = get_nameof(item)
+            #dbname = get_nameof(item)
+            pp item
+            dbname = item['blastdb']
 
             # merge db-groups.json data into database
             dbs.each { |db|

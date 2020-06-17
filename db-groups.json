@@ -3,7 +3,7 @@
 			"group":		"wheat",
 			"name":			"Wheat ABD Collection",
 			"list":[
-				"IWGSCv1"
+				{ "blastdb": "IWGSCv1", "jb": "whe-iwgsc2018" }
 			]
 		},
 
@@ -11,69 +11,9 @@
 			"group":		"barley",
 			"name":			"Barley Collection",
 			"list":[
-				"MorexV1",
-				"MorexV2"
-			]
-		},
-		
-		"oat-1":{
-			"group":		"oat",
-			"name":			"Oat (Avena) Collection",
-			"list":[
-				"oat6K",
-				"dnOSt",
-				"OSref100",
-				"OSref90"
-			]
-		},
-		"rye-1":{
-			"group":		"rye",
-			"name":			"Rye Collection",
-			"list":[
-				"Scv2CHR",
-				"Scv2CTG",
-				"Scv2SFD",
-				"rye600K"
-			]
-		},
-		
-		
-		"probes":{
-			"group":		"any",
-			"name":			"Probe Collection",
-			"list":[
-				"wheat90K",
-				"HvBES",
-				"Hv50Kall",
-				"Hv50Kmap",
-				"rye600K",
-				"oat6K",
-				"Sequenced_probes",
-				"EST-SSR.consensi",
-				"Barley-Affy"
-			]
-		},
-		"misc":{
-			"group":		"any",
-			"name":			"Miscellaneous Datasets",
-			"list":[
-				"GrainGenes|any",
-				"Sequenced_probes|any",
-				"TREPnr16|any",
-				"mappedEST|wheat",
-				"mappedContig|wheat",
-				"EST-SSR.consensi|wheat",
-				"WheatSNP-consensus|wheat", 
-				"CV_Triticum|wheat",
-				"NCBI_Triticeae|wheat",
-				"NCBI_Triticum_ESTs|wheat", 
-				"NCBI_Triticum-Aegilop|wheat",
-				"NCBI_Aegilops_ESTs|wheat",
-				"Triticum_062008|wheat",
-				"Barley-Affy|barley",
-				"NCBI_Hordeum_ESTs|barley",
-				"EST-SSR.consensi|oat",
-				"NCBI_Secale_ESTs|rye"
+				{ "blastdb": "MorexV1", "jb": "bar-morex" },
+				{ "blastdb": "MorexV2", "jb": "bar-morex2" }
 			]
 		}
+		
 }
