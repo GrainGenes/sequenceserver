@@ -88,6 +88,10 @@ a.disabled:hover,
 /**
  * Increase font size, add border, make place for subtext to app name.
  */
+.container {
+  position:relative;
+  overflow:hidden;
+}
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
@@ -95,7 +99,7 @@ a.disabled:hover,
 }
 .navbar-brand {
   height: auto;
-  padding: 10px 7.5px;
+  padding: 0px 7.5px;
   font-size: 32px;
   color: rgb(51, 51, 51);
 }
@@ -105,13 +109,22 @@ a.disabled:hover,
 }
 
 .navbar-nav > li > a {
-  padding: 10px 7.5px;
+  padding: 0px 7.5px;
   font-size: 14px;
   color: #174465;
 }
 /* logo */
 .navbar-brand > img {
   display: inline-block;
+}
+
+.navbar {
+  background-image: url(../img/head.png);
+  background-size: 100% 50px;
+}
+.navbar-headie {
+  height: 50px;
+  background-image: url(../img/header.png);
 }
 
 /**
@@ -523,8 +536,17 @@ input[type=checkbox] {
 }
 /* CSS class for logo */
 .logo {
-  width: 205.05px;
-  max-height: 35px;
+  xwidth: 205.05px;
+  max-height: 40px;
+  position: relative;
+  top: 5px;
+}
+.logo-text {
+  font-size: 80%;
+  color:white;
+  padding-left: 10px;
+  position: relative;
+  top: 6px;
 }
 /* CSS class for vertical line separating the hit links */
 .line {
