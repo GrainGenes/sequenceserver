@@ -88,7 +88,7 @@ a.disabled:hover,
 /**
  * Increase font size, add border, make place for subtext to app name.
  */
-.container {
+.navbar .container {
   position:relative;
   overflow:hidden;
 }
@@ -502,7 +502,7 @@ input[type=checkbox] {
 }
 
 .footer a:first-child {
-  vertical-align: super;
+  xvertical-align: super;
 }
 
 .dnd-overlay {
