@@ -216,8 +216,9 @@ var Form = React.createClass({
             /* Update form state (i.e., list of databases and predefined
              * advanced options.
              */
+            // graingenes - sortBy order
             this.setState({
-                databases: data['database'],
+                databases: _.sortBy(data['database'],x => x.order),
                 preSelectedDbs: data['preSelectedDbs'],
                 preDefinedOpts: data['options']
             });
@@ -228,6 +229,9 @@ var Form = React.createClass({
             if (data['query']) {
                 this.refs.query.value(data['query']);
             }
+
+            console.log("read searchdata.json complete",this.state);
+
         }.bind(this));
 
         /* Enable submitting form on Cmd+Enter */
@@ -661,7 +665,7 @@ var Databases = React.createClass({
     // graingenes
     subgroups: function () {
         return _.uniq(_.map(this.props.databases,
-            _.iteratee('subgroup'))).sort();
+            _.iteratee('subgroup')));
     },
 
     handleClick: function (database) {

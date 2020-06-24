@@ -1,19 +1,31 @@
 {
 		"wheat-abd":{
 			"group":		"wheat",
-			"name":			"Wheat ABD Collection",
+			"name":			"Wheat ABD Collections",
+			"order":		10,
 			"list":[
 				{ "blastdb": "IWGSCv1", "jb": "whe-iwgsc2018" }
 			]
 		},
 
-		"barley-h":{
+		"barley":{
 			"group":		"barley",
-			"name":			"Barley Collection",
+			"name":			"Barley Collections",
+			"order":		20,
 			"list":[
 				{ "blastdb": "MorexV1", "jb": "bar-morex" },
-				{ "blastdb": "MorexV2", "jb": "bar-morex2" }
+				{ "blastdb": "MorexV2", "jb": "bar-morex2", "order":10 }
 			]
+		},
+
+		"oat": {
+			"group":		"oat",
+			"name":			"Oat Ccollections",
+			"list":[
+				{ "blastdb": "AvAtl-p",	"jb": "oat-atlantica", "order": 10 },
+				{ "blastdb": "AvEri-ot" }
+			]
+			
 		}
 		
 }
