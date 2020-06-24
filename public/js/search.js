@@ -212,7 +212,7 @@ var Form = React.createClass({
         if (job_id) {
             search.unshift(`job_id=${job_id}`);
         }
-        //$.getJSON(`searchdata.json?${search.join('&')}`, function(data) {
+        //$.getJSON(`searchdata.json?${search.join('&')}`, function(data) { // unknown why this sometimes fails
         $.getJSON(`searchdata.json`, function(data) {
 
             let selectdb = data['database'];
