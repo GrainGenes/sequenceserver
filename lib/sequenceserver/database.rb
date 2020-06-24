@@ -22,7 +22,7 @@ module SequenceServer
   # SequenceServer will always place BLAST database files alongside input FASTA,
   # and use `parse_seqids` option of `makeblastdb` to format databases.
   Database = Struct.new(:name, :title, :type, :nsequences, :ncharacters, 
-                        :updated_on, :group, :subgroup, :subgroupname, :order) do
+                        :updated_on, :group, :subgroup, :subgroupname, :order, :itemorder) do
 
     extend Forwardable
 
@@ -215,6 +215,9 @@ module SequenceServer
       # create cross reference object for dbgroups and attach
       # the database reference to the list items.
       def read_blastdb_groups
+
+        puts "\n#### GrainGenes Edition ####"
+
         file = File.read('db-groups.json')
         @dbgroups = JSON.parse(file)
 
@@ -226,11 +229,9 @@ module SequenceServer
           db.subgroup = "other"
           db.subgroupname = "Other"
           db.order = 100
+          db.itemorder = 50;
         }
 
-        #pp dbs
-        puts "\ndatabase groups"
-  
         @dbgroups.each { |subgroup,gdata|
           gdata["list"].each { |item|
             
@@ -246,21 +247,22 @@ module SequenceServer
                   db.subgroup = subgroup
                   db.subgroupname = gdata['name']
                   
+                  # set database order
                   if gdata['order'].nil?
                     db.order = 50
                   else
                     db.order = gdata['order']
                   end
 
-                  #pp db
+                  # set list item order
+                  unless item['order'].nil?
+                    db.itemorder = item['order']
+                  end
               end
             }
           }
         }
-        
         #pp dbs
-        
-        puts '--------------------------------'
       end
 
       # graingenes

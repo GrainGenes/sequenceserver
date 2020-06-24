@@ -22,7 +22,9 @@
 			"group":		"oat",
 			"name":			"Oat Ccollections",
 			"list":[
-				{ "blastdb": "AvAtl-p",	"jb": "oat-atlantica", "order": 10 },
+				{ "blastdb": "AvAtl-p",		"jb": "oat-atlantica", 	"order": 10 },
+				{ "blastdb": "AvAtl-ot" },
+				{ "blastdb": "AvEri-p",		"jb": "oat-eriantha",	"order":10 },
 				{ "blastdb": "AvEri-ot" }
 			]
 			

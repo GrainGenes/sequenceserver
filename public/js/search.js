@@ -213,6 +213,16 @@ var Form = React.createClass({
             search.unshift(`job_id=${job_id}`);
         }
         $.getJSON(`searchdata.json?${search.join('&')}`, function(data) {
+            /*
+            _.forEach(data['database'],function(db) {
+                _.forEach(db.list,function(item) {
+                    if (!item.order)
+                        item.order = 50;
+                });
+                db.list = _.sortBy(db.list,x => x.order);
+            });
+            */
+
             /* Update form state (i.e., list of databases and predefined
              * advanced options.
              */
@@ -230,7 +240,7 @@ var Form = React.createClass({
                 this.refs.query.value(data['query']);
             }
 
-            console.log("read searchdata.json complete",this.state);
+            console.log("read searchdata.json complete",this.state.databases);
 
         }.bind(this));
 
@@ -742,7 +752,7 @@ var Databases = React.createClass({
                     </div>
                     <ul className={'list-group databases ' + subgroup}>
                         {
-                            _.map(this.databasesSubgroup(subgroup), _.bind(function (database,index) {
+                            _.map(_.sortBy(this.databasesSubgroup(subgroup),x => x.itemorder), _.bind(function (database,index) {
                                 return (
                                     <li className="list-group-item" key={'DB_'+subgroup+index}>
                                         { this.renderDatabase(database) }
