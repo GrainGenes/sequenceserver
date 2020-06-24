@@ -212,23 +212,27 @@ var Form = React.createClass({
         if (job_id) {
             search.unshift(`job_id=${job_id}`);
         }
-        $.getJSON(`searchdata.json?${search.join('&')}`, function(data) {
-            /*
-            _.forEach(data['database'],function(db) {
-                _.forEach(db.list,function(item) {
-                    if (!item.order)
-                        item.order = 50;
-                });
-                db.list = _.sortBy(db.list,x => x.order);
-            });
-            */
+        //$.getJSON(`searchdata.json?${search.join('&')}`, function(data) {
+        $.getJSON(`searchdata.json`, function(data) {
+
+            let selectdb = data['database'];
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+
+            // graingenes
+            // read panel value and apply filter panels
+            if (urlParams.has('panel')) {
+                let panel = urlParams.get('panel');
+                console.log("panel=",panel);
+                selectdb = _.filter(selectdb, x => { return x.group===panel || x.group==='any'; });
+            }
 
             /* Update form state (i.e., list of databases and predefined
              * advanced options.
              */
             // graingenes - sortBy order
             this.setState({
-                databases: _.sortBy(data['database'],x => x.order),
+                databases: _.sortBy(selectdb,x => x.order),
                 preSelectedDbs: data['preSelectedDbs'],
                 preDefinedOpts: data['options']
             });
