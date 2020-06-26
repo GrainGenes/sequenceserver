@@ -4,17 +4,85 @@
 			"name":			"Wheat ABD Collections",
 			"order":		10,
 			"list":[
-				{ "blastdb": "IWGSCv1", "jb": "whe-iwgsc2018" }
+				{ "blastdb": "IWGSCv1", "jb": "whe-iwgsc2018","order":10 },
+				{ "blastdb": "SvevoV1", "jb": "whe-svevo2018","order":10 },
+				{ "blastdb": "TaNCBI31" },
+				{ "blastdb": "Ta31_all" },
+				{ "blastdb": "Ta31_map" },
+				{ "blastdb": "Ta31_non" },
+				{ "blastdb": "Ta31_org" },
+				{ "blastdb": "TaPANsyn" },
+				{ "blastdb": "Ta_Cdnza" },
+				{ "blastdb": "Ta_Clre" },
+				{ "blastdb": "Ta_Prgn" },
+				{ "blastdb": "Ta_Rbgs" },
+				{ "blastdb": "Ta30_all" },
+				{ "blastdb": "Ta30_map" },
+				{ "blastdb": "Ta30_non" },
+				{ "blastdb": "Ta30_org" },
+				{ "blastdb": "Ta25_all" },
+				{ "blastdb": "Ta25_map" },
+				{ "blastdb": "Ta25_non" },
+				{ "blastdb": "Ta25_org" },
+				{ "blastdb": "IWGSCv1_all" },
+				{ "blastdb": "IWGSCv1_map" },
+				{ "blastdb": "IWGSCv1_non" },
+				{ "blastdb": "IWGSCv2_all" },
+				{ "blastdb": "URGI" },
+				{ "blastdb": "CS5X" },
+				{ "blastdb": "wheat90K" }	
 			]
 		},
+		"wheat-ab":{
+			"group":		"wheat",
+			"name":			"Wheat AB Collections",
+			"order":		12,
+			"list":[
+				{ "blastdb": "TRIDC1_AB" },
+				{ "blastdb": "TRIDC1_A" },
+				{ "blastdb": "TRIDC1_B" },
+				{ "blastdb": "TRIDC1cds_map" },
+				{ "blastdb": "TRIDC1cds_non" },
+				{ "blastdb": "Ttd_Krns" },
+				{ "blastdb": "Td_Svvo" }
+			]
+		},
+		"wheat-a":{
+			"group":		"wheat",
+			"name":			"Wheat A Collections",
+			"order":		14,
+			"list":[
+				{ "blastdb": "Tm_DV92" }
+			]
+		},
+		"wheat-d":{
+			"group":		"wheat",
+			"name":			"Wheat D Collections",
+			"order":		16,
+			"list": [
+				{ "blastdb": "BGID90" },
+				{ "blastdb": "Aet_AL878" }		
+			]
+		},
+
 
 		"barley":{
 			"group":		"barley",
 			"name":			"Barley Collections",
 			"order":		20,
 			"list":[
-				{ "blastdb": "MorexV1", "jb": "bar-morex" },
-				{ "blastdb": "MorexV2", "jb": "bar-morex2", "order":10 }
+				{ "blastdb": "MorexV1", "jb": "bar-morex", "order":12 },
+				{ "blastdb": "MorexV2", "jb": "bar-morex2", "order":10 },
+				{ "blastdb": "Hv_rel1" },
+				{ "blastdb": "HvBarke" },
+				{ "blastdb": "HvBowman" },
+				{ "blastdb": "HvMorex" },
+				{ "blastdb": "HvBACctg" },
+				{ "blastdb": "HvBES" },
+				{ "blastdb": "HvGENES" },
+				{ "blastdb": "HvU35" },
+				{ "blastdb": "Hv50Kall" },
+				{ "blastdb": "Hv50Kmap"}		
 			]
 		},
 
@@ -25,9 +93,62 @@
 				{ "blastdb": "AvAtl-p",		"jb": "oat-atlantica", 	"order": 10 },
 				{ "blastdb": "AvAtl-ot" },
 				{ "blastdb": "AvEri-p",		"jb": "oat-eriantha",	"order":10 },
-				{ "blastdb": "AvEri-ot" }
+				{ "blastdb": "AvEri-ot" },
+				{ "blastdb": "oat6K" },
+				{ "blastdb": "dnOSt" },
+				{ "blastdb": "OSref100" },
+				{ "blastdb": "OSref90" }			
 			]
 			
-		}
-		
+		},
+		"rye":{
+			"group":		"rye",
+			"name":			"Rye Collections",
+			"list":[
+				{ "blastdb": "Scv2CHR" },
+				{ "blastdb": "Scv2CTG" },
+				{ "blastdb": "Scv2SFD" },
+				{ "blastdb": "rye600K" }
+			]
+		},
+
+
+		"probes":{
+			"group":		"any",
+			"name":			"Probe Collections",
+			"list":[
+				{ "blastdb": "wheat90K" },
+				{ "blastdb": "HvBES" },
+				{ "blastdb": "Hv50Kall" },
+				{ "blastdb": "Hv50Kmap" },
+				{ "blastdb": "rye600K" },
+				{ "blastdb": "oat6K" },
+				{ "blastdb": "Sequenced_probes" },
+				{ "blastdb": "EST-SSR.consensi" },
+				{ "blastdb": "Barley-Affy" }
+			]
+		},
+		"misc":{
+			"group":		"any",
+			"name":			"Miscellaneous Datasets",
+			"list":[
+				{ "blastdb": "GrainGenes", "group":"any" },
+				{ "blastdb": "Sequenced_probes", "group":"any" },
+				{ "blastdb": "TREPnr16", "group":"any" },
+				{ "blastdb": "mappedEST", "group":"wheat" },
+				{ "blastdb": "mappedContig", "group":"wheat" },
+				{ "blastdb": "EST-SSR.consensi", "group":"wheat" },
+				{ "blastdb": "WheatSNP-consensus", "group":"wheat" }, 
+				{ "blastdb": "CV_Triticum", "group":"wheat" },
+				{ "blastdb": "NCBI_Triticeae", "group":"wheat" },
+				{ "blastdb": "NCBI_Triticum_ESTs", "group":"wheat" }, 
+				{ "blastdb": "NCBI_Triticum-Aegilop", "group":"wheat" },
+				{ "blastdb": "NCBI_Aegilops_ESTs", "group":"wheat" },
+				{ "blastdb": "Triticum_062008", "group":"wheat" },
+				{ "blastdb": "Barley-Affyy", "group":"barley" },
+				{ "blastdb": "NCBI_Hordeum_ESTs", "group":"barley" },
+				{ "blastdb": "EST-SSR.consensi", "group":"oat" },
+				{ "blastdb": "NCBI_Secale_ESTs", "group":"rye" }
+			]
+		}		
 }
