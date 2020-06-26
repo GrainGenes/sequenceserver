@@ -240,7 +240,8 @@ module SequenceServer
 
             # merge db-groups.json data into database
             dbs.each { |db|
-              if db.name.include? dbname
+              #if db.name.include? dbname
+              if db.name.split('/')[4] == dbname
                   #puts "found: "+gdata['name']+" - "+gdata['order'].to_s+" > "+gdata['order'].class.to_s+" . "+(defined?gdata['order']).to_s
                   
                   db.group = gdata['group']
