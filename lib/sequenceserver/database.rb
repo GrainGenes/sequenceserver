@@ -22,7 +22,7 @@ module SequenceServer
   # SequenceServer will always place BLAST database files alongside input FASTA,
   # and use `parse_seqids` option of `makeblastdb` to format databases.
   Database = Struct.new(:name, :title, :type, :nsequences, :ncharacters, 
-                        :updated_on, :group, :subgroup, :subgroupname, :order, :itemorder) do
+                        :updated_on, :group, :subgroup, :subgroupname, :order, :itemorder, :jb) do
 
     extend Forwardable
 
@@ -229,7 +229,7 @@ module SequenceServer
           db.subgroup = "other"
           db.subgroupname = "Other"
           db.order = 100
-          db.itemorder = 50;
+          db.itemorder = 50
         }
 
         @dbgroups.each { |subgroup,gdata|
@@ -258,6 +258,10 @@ module SequenceServer
                   # set list item order
                   unless item['order'].nil?
                     db.itemorder = item['order']
+                  end
+
+                  unless item['jb'].nil?
+                    db.jb = item['jb']
                   end
               end
             }

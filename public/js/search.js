@@ -818,6 +818,8 @@ var Databases = React.createClass({
 */
     renderDatabase: function (database) {
         var disabled = this.state.type && this.state.type !== database.type;
+        var jb = "";
+        if (database.jb) jb = "*";
 
         return (
             <label
@@ -831,7 +833,7 @@ var Databases = React.createClass({
                                 this.handleClick(database);
                             }, this)
                         }/>
-                {' ' + (database.title || database.name)}
+                {' '+ jb + (database.title || database.name) + ' ['+database.name.split('/')[4]+']'}
             </label>
         );
     },
