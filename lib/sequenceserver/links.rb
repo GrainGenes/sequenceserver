@@ -10,8 +10,12 @@ def getJbrowseDb (organism)
     gdata["list"].each { |item|
       
       dbname = item['blastdb']
+      dbname2 = item['dbname']
 
       if (organism==dbname) 
+        return item['jb']
+      end
+      if (organism==dbname2) 
         return item['jb']
       end
     }
