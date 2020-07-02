@@ -365,6 +365,16 @@ a.disabled:hover,
   padding: 1px 0 0;
 }
 
+/* graingenes item styles */
+.has-jb {
+  width: 10px;
+  margin-left:5px;
+  display:none;
+}
+.has-jb-shown {
+  display:inline
+}
+
 #help pre:hover {
   background-color: #FFC;
 }
@@ -542,11 +552,17 @@ input[type=checkbox] {
   top: 5px;
 }
 .logo-text {
+  padding-left: 30px;
+  position: absolute;
+  top: 2px;
+}
+.logo-gg {
   font-size: 80%;
   color:white;
-  padding-left: 10px;
-  position: relative;
-  top: 6px;
+
+}
+.logo-subtext {
+  font-size: 55%;
 }
 /* CSS class for vertical line separating the hit links */
 .line {
