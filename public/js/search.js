@@ -816,25 +816,34 @@ var Databases = React.createClass({
         );
     },
 */
+    /* graingenes search item render */
     renderDatabase: function (database) {
         var disabled = this.state.type && this.state.type !== database.type;
         var jb = "";
-        if (database.jb) jb = "*";
+        var hasJb = "has-jb";
+        if (database.jb) jb = "* ";
+        var text = '['+jb + database.name.split('/')[4]+'] '+database.title;
+        if (database.jb) {
+            hasJb += " has-jb-shown";
+        }
 
         return (
-            <label
-                className={disabled && 'disabled database' || 'database'}>
-                <input
-                    type="checkbox" name="databases[]" value={database.id}
-                    data-type={database.type} disabled={disabled}
-                    onChange=
-                        {
-                            _.bind(function () {
-                                this.handleClick(database);
-                            }, this)
-                        }/>
-                {' '+ jb + (database.title || database.name) + ' ['+database.name.split('/')[4]+']'}
-            </label>
+            <div title={text}>
+                <label
+                    className={disabled && 'disabled database' || 'database'}>
+                    <input
+                        type="checkbox" name="databases[]" value={database.id}
+                        data-type={database.type} disabled={disabled}
+                        onChange=
+                            {
+                                _.bind(function () {
+                                    this.handleClick(database);
+                                }, this)
+                            }/>
+                    <img className={hasJb} title="GrainGenes browser available" src="img/GG-logo.png" />
+                    {' '+ (database.title || database.name) }
+                </label>
+            </div>
         );
     },
 
