@@ -5,13 +5,18 @@
 			"order":		10,
 			"list":[
 				{ "blastdb": "IWGSCv1", "jb": "whe-iwgsc2018","order":10 },
-				{ "blastdb": "SvevoV1", "jb": "whe-svevo2018","order":10 },
+				{ "blastdb": "SvevoV1", "jb": "whe-svevo2018","order":12 },
+				{ "blastdb": "TaPANsyn", "dbname":"PANsyn", "jb": "whe-pan2017","order":14 },
+				{ "blastdb": "IWGSCv2","jb": "whe-iwgsc2-2019","order":18 },
+				{ "blastdb": "IWGSCv1_all","order":30 },
+				{ "blastdb": "IWGSCv1_map","order":30 },
+				{ "blastdb": "IWGSCv1_non","order":30 },
+				{ "blastdb": "IWGSCv2_all","order":30 },
 				{ "blastdb": "TaNCBI31" },
 				{ "blastdb": "Ta31_all" },
 				{ "blastdb": "Ta31_map" },
 				{ "blastdb": "Ta31_non" },
 				{ "blastdb": "Ta31_org" },
-				{ "blastdb": "TaPANsyn" },
 				{ "blastdb": "Ta_Cdnza" },
 				{ "blastdb": "Ta_Clre" },
 				{ "blastdb": "Ta_Prgn" },
@@ -24,10 +29,6 @@
 				{ "blastdb": "Ta25_map" },
 				{ "blastdb": "Ta25_non" },
 				{ "blastdb": "Ta25_org" },
-				{ "blastdb": "IWGSCv1_all" },
-				{ "blastdb": "IWGSCv1_map" },
-				{ "blastdb": "IWGSCv1_non" },
-				{ "blastdb": "IWGSCv2_all" },
 				{ "blastdb": "URGI" },
 				{ "blastdb": "CS5X" },
 				{ "blastdb": "wheat90K" }	
@@ -38,9 +39,8 @@
 			"name":			"Wheat AB Collections",
 			"order":		12,
 			"list":[
-				{ "blastdb": "TRIDC1_AB" },
-				{ "blastdb": "TRIDC1_A" },
-				{ "blastdb": "TRIDC1_B" },
+				{ "blastdb": "TTdZavitan-V2", "jb": "whe-zavitan2019","order":10 },
+				{ "blastdb": "TTdZavitan-V1", "jb": "whe-zavitan2017","order":12 },
 				{ "blastdb": "TRIDC1cds_map" },
 				{ "blastdb": "TRIDC1cds_non" },
 				{ "blastdb": "Ttd_Krns" },
@@ -52,6 +52,8 @@
 			"name":			"Wheat A Collections",
 			"order":		14,
 			"list":[
+				{ "blastdb": "TRIDC1_A"},
+				{ "blastdb": "TRIDC1_B" },
 				{ "blastdb": "Tm_DV92" }
 			]
 		},
@@ -60,8 +62,8 @@
 			"name":			"Wheat D Collections",
 			"order":		16,
 			"list": [
-				{ "blastdb": "BGID90" },
-				{ "blastdb": "Aet_AL878" }		
+				{ "blastdb": "ATauschii40", "jb": "whe-tauschii2017","order":10 },		
+				{ "blastdb": "BGID90" }
 			]
 		},
 
@@ -89,11 +91,13 @@
 		"oat": {
 			"group":		"oat",
 			"name":			"Oat Ccollections",
+			"order":		22,
 			"list":[
-				{ "blastdb": "AvAtl-p",		"jb": "oat-atlantica", 	"order": 10 },
-				{ "blastdb": "AvAtl-ot" },
-				{ "blastdb": "AvEri-p",		"jb": "oat-eriantha",	"order":10 },
-				{ "blastdb": "AvEri-ot" },
+				{ "blastdb": "PepsiCo",		"jb": "oat-ot3098-pepsico", 	"order": 10 },
+				{ "blastdb": "AAtlantica",		"jb": "oat-atlantica", 	"order": 12 },
+				{ "blastdb": "AAtlantica-oth" },
+				{ "blastdb": "AEriantha",		"jb": "oat-eriantha",	"order":12 },
+				{ "blastdb": "AEriantha-oth" },
 				{ "blastdb": "oat6K" },
 				{ "blastdb": "dnOSt" },
 				{ "blastdb": "OSref100" },
@@ -104,8 +108,9 @@
 		"rye":{
 			"group":		"rye",
 			"name":			"Rye Collections",
+			"order":		24,
 			"list":[
-				{ "blastdb": "Scv2CHR" },
+				{ "blastdb": "Scv2CHR", "jb":"rye-secale2017", "order":10 },
 				{ "blastdb": "Scv2CTG" },
 				{ "blastdb": "Scv2SFD" },
 				{ "blastdb": "rye600K" }
