@@ -325,6 +325,11 @@ var Form = React.createClass({
         return (
             <div className="container">
                 <form id="blast" method="post" className="form-horizontal">
+                    <div className="examples">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Wheat Example</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm">Barley Example</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm">Oat Example</button>
+                    </div>
                     <div className="form-group query-container">
                         <Query ref="query" onSequenceTypeChanged={this.handleSequenceTypeChanged}/>
                     </div>
@@ -333,12 +338,15 @@ var Form = React.createClass({
                         <ProteinNotification/>
                         <MixedNotification/>
                     </div>
+                    <div className="legend"><img src="img/GG-logo.png"/> - databases with corresponding browsers</div>
                     <Databases ref="databases" databases={this.state.databases}
                         preSelectedDbs={this.state.preSelectedDbs}
                         onDatabaseTypeChanged={this.handleDatabaseTypeChanaged} />
-                    <div className="form-group">
-                        <Options ref="opts"/>
-                        <SearchButton ref="button" onAlgoChanged={this.handleAlgoChanged}/>
+                    <div className="gg-bottom-panel container">
+                        <div className="form-group">
+                            <Options ref="opts"/>
+                            <SearchButton ref="button" onAlgoChanged={this.handleAlgoChanged}/>
+                        </div>
                     </div>
                 </form>
             </div>
