@@ -90,7 +90,7 @@
 
 		"oat": {
 			"group":		"oat",
-			"name":			"Oat Ccollections",
+			"name":			"Oat Collections",
 			"order":		22,
 			"list":[
 				{ "blastdb": "PepsiCo",		"jb": "oat-ot3098-pepsico", 	"order": 10 },
