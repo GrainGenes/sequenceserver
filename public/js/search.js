@@ -321,15 +321,63 @@ var Form = React.createClass({
         }
     },
 
+    /* graingenes */
+    exampleButtons: function () {
+
+        var thisb = this;
+        //const examples = require('../graingenes-examples');
+
+        lastDb = this.refs.databases;
+
+        const examples = [
+            {
+                "button": "Wheat Example",
+                "fill": "ATGGCAATGGCGTCCATCGTCGTGCAGGTGTCCGCCCTGCTCCTCAACCTCATCGCCTTCGGCCTCGCCGTCGCCGCCGAGCAGCGCCGCAGCAAGGCAAGCCCTGCACCCGCACGCCCAGAAGCCCGCCTGATCTCGTGAGTCGTGACCGCCCTGCTGATCTAACTCACGCGAAATGGGGCCTGCGCAGGCCACGGTGACGCCGGATCTGGCCAAGGAGTACGACTACTGCTTCTACGACTCCGACGTCGCCACCGGCTACGGCGTCGGCGCGCTGCTCCTCCTCGTCGCCGCGCAGGCCGTCGTCATGCTCGCCAGCCGGTGCTTCTGCTGCGGGCGCGGGCTCAAGCCGGGGGGCTCGCGCGCCTGCGC",
+                "db": ["IWGSCv1","SvevoV1","TaPANsyn"]
+            },
+            {
+                "button": "Barley Example",
+                "fill": "ATGAGGAGCAAGCCGACGTCCACTCTTGGAGGTTTTGTTTGGGCCCTACAGGTTTGGATTTGGGAGCGTATGCCTGTTGGTCATAACCTCAGCCTTCCTCTGGAAGAACCTTGGATGTACCCGTTTTACGGAGATGAGGAGCGGTACCCCACTATCGCACACACATGGGCTAATGTCCAATGGACGACTATCGTAGTTATGGGGCGGTATAAGCAGGGCCGGCTGTGTGATTTCAAAGGCCCCGGTGCGAACTTTACCAATGGGCCCCAATAA",
+                "db": ["TTdZavitan-V2","TTdZavitan-V1"]
+            },
+            {
+                "button": "Oat Example",
+                "fill": "GGAGCACCACTGCCTCGAAGAAAATCCTCTCAATCTCGCCGGCCTCCACCTCCTCTGCTCCACTGTACTGGCTCAGAGAGTGGTCGTGGGAGCGAGGATATCAATCCCAACTCGGATTCATTCATCCTTCAACCAACCAAAATTTCCCCTGATTCGTTTGCTGCTCGGTGGAGTACCAGTAGCGCTGCCGCACTTCGTCCTCCAGAGATTCAGCGGGTTCAACCCAGCTCGCCTGCCCCCATGTCCGCGCCCACGGCGAAGCAGGGCGCGGAGGAGGAGGCCGAACGCCTCCTCGCGGCCGCCAAGCTGAACCCGAACGACGGCGGCCCCTTCCGCTCCCTCGGCCACCACTACGCCCGTGCCGGTGACGCGCAGCGCGCGGCCAGGTGCTACCAGCGGGCCGTGACGCTCGACCCCGACGACGCCGAGGCCGGG",
+                "db": ["PepsiCo","AAtlantica","AEriantha"]
+            }
+        ];
+
+        function fillQueryBox(item) {
+            console.log("refs",thisb.refs);
+            thisb.refs.query.setState({value:item.fill});
+            // clear all checkboxes
+            $(`.ggdb input:checked`).click();
+
+            // check selected 
+            item.db.map(dbname => {
+                console.log("ggdb",dbname);
+                //thisb.refs.databases['ggdb_'+dbname].checked = true;
+                $('.ggdb_'+dbname).click();
+            });
+        }
+
+        return (
+            <div className="examples">
+            {examples.map(item => (
+                <button type="button" class="btn btn-outline-primary btn-sm" onClick={() => fillQueryBox(item)}>
+                    {item.button}
+                </button>
+            ))}
+            </div>
+          );
+    },
+
     render: function () {
         return (
             <div className="container">
                 <form id="blast" method="post" className="form-horizontal">
-                    <div className="examples">
-                        <button type="button" class="btn btn-outline-primary btn-sm">Wheat Example</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm">Barley Example</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm">Oat Example</button>
-                    </div>
+                    { this.exampleButtons() }
+
                     <div className="form-group query-container">
                         <Query ref="query" onSequenceTypeChanged={this.handleSequenceTypeChanged}/>
                     </div>
@@ -827,6 +875,7 @@ var Databases = React.createClass({
     /* graingenes search item render */
     renderDatabase: function (database) {
         var disabled = this.state.type && this.state.type !== database.type;
+        var dbid = database.name.split('/')[4];
         var jb = "";
         var hasJb = "has-jb";
         if (database.jb) jb = "* ";
@@ -838,8 +887,10 @@ var Databases = React.createClass({
         return (
             <div title={text}>
                 <label
-                    className={disabled && 'disabled database' || 'database'}>
+                    className={(disabled && 'disabled database' || 'database')+" ggdb ggdb_"+dbid}>
                     <input
+                        //className={'ggdb ggdb_'+dbid}
+                        ref={(input) => {this["ggdb_"+dbid] = input;}}
                         type="checkbox" name="databases[]" value={database.id}
                         data-type={database.type} disabled={disabled}
                         onChange=
