@@ -96,7 +96,7 @@ export default React.createClass({
         return (
             <div className="section-header-sidebar go-back-up">
                 <a href="/blast">
-                    <img className="back-up-img" src="img/back-up.png" />
+                    <img className="back-up-img" src="img/gg-search.png" />
                     New BLAST Query
                 </a>
             </div>
