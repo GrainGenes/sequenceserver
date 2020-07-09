@@ -1,3 +1,18 @@
+.logo-text {
+    padding-left: 30px;
+    position: absolute;
+    top: 2px;
+}
+.logo-gg {
+    font-size: 80%;
+    color:white;
+  
+}
+.logo-subtext {
+    font-size: 55%;
+    color:black;
+}
+  
 #gg-blast-legacy {
     position: absolute;
     right: 5%;
