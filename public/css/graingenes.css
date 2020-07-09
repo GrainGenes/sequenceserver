@@ -1,3 +1,16 @@
+
+/* go back up button */
+.go-back-up {
+    position:relative;
+    padding-top: 10px;
+}
+.back-up-img {
+    width: 24px;
+    margin-right: 10px;
+}
+
+
+/* GG logo section */
 .logo-text {
     padding-left: 30px;
     position: absolute;
@@ -21,7 +34,8 @@
     -moz-border-radius: 3px;
     border-radius: 3px;    
 }
-  
+
+/* legacy blast button */
 #gg-blast-legacy {
     position: absolute;
     right: 5%;
@@ -29,6 +43,7 @@
     padding: 2px 10px;
 }
 
+/* query form extentions */
 .form-horizontal {
     position:relative;
 }

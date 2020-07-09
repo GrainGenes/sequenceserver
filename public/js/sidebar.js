@@ -84,8 +84,21 @@ export default React.createClass({
     render: function () {
         return (
             <div className="sidebar">
+                { this.newQuery() }
                 { this.props.shouldShowIndex && this.index() }
                 { this.downloads() }
+            </div>
+        );
+    },
+
+    // graingenes New BLAST Query
+    newQuery: function() {
+        return (
+            <div className="section-header-sidebar go-back-up">
+                <a href="/blast">
+                    <img className="back-up-img" src="img/back-up.png" />
+                    New BLAST Query
+                </a>
             </div>
         );
     },
