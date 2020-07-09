@@ -173,7 +173,7 @@ export default React.createClass({
         return {
             text: 'FASTA',
             icon: 'fa-download',
-            className: 'download-fa',
+            className: 'download-fa disabled',
             onClick: () => this.downloadFASTA()
         };
     },

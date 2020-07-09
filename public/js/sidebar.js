@@ -143,7 +143,7 @@ export default React.createClass({
                 <ul className="nav">
                     {
                         !this.props.data.imported_xml && <li>
-                            <a href="#" className="btn-link download-fasta-of-all"
+                            <a href="#" className="btn-link download-fasta-of-all disabled"
                                 onClick={this.downloadFastaOfAll}>
                                 FASTA of all hits
                             </a>
